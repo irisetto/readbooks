@@ -1,0 +1,250 @@
+
+  
+  .my_body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    height: 90%;
+    width: 100%;
+    overflow-y: hidden;
+    margin: 0;
+   
+    background-image: url("../pictures/paper.jpg");
+    background-size: cover;
+  }
+  
+  .h1 {
+    font-weight: bold;
+    margin: 0;
+    font-family: 'Viga';
+    font-size: larger;
+  }
+  
+  .h2 {
+    text-align: center;
+  }
+  
+  .p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+    font-family: 'Montserrat';
+  }
+  
+  .span {
+    font-size: 12px;
+  }
+  
+  .a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+  }
+  
+  .submit {
+    border-radius: 20px;
+    border: 1px solid #7e98ee;
+    background-color: #5e7ce2;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+  }
+  
+  .submit:active {
+    transform: scale(0.95);
+  }
+  
+  .submit:focus {
+    outline: none;
+  }
+  
+  .submit.ghost {
+    background-color: transparent;
+    border-color: #FFFFFF;
+  }
+  
+  form {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    gap: 20px;
+    height: 100%;
+    text-align: center;
+  }
+  
+  .input {
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 80%;
+    border-radius: 10px;
+    font-family: 'Montserrat';
+    font-size: small;
+  }
+ 
+  .form-container {
+	position: absolute;
+	top: 0;
+    width: 100%;
+	height: 100%;
+}
+.register-info{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+    text-align: center;
+    place-items: center center;
+    
+}
+.register-info .input{
+    padding: 10px;
+    margin: 10px;
+}
+.sign-in-container {
+	left: 0;
+	width: 50%;
+	z-index: 2;
+}
+.sign-up-container {
+	left: 50%;
+	width: 50%;
+	z-index: 2;
+}
+  .overlay-right{
+    z-index: 3;
+
+  }
+  .overlay-left{
+z-index: 1;
+  }
+  .overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    
+   
+  }
+  
+  
+  .overlay {
+   
+    color: #FFFFFF;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+   
+  }
+  
+  
+  .overlay-panel {
+    background: #5E7CE2;
+    background: -webkit-linear-gradient(to right, #5E7CE2, #5c55e0);
+    background: linear-gradient(to right, #5E7CE2, #5c55e0);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 50%;
+  
+  }
+  
+
+  
+ 
+  
+  :root {
+    --duration: 500ms;  
+    --ease-in: cubic-bezier(0.85, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.3, 1);
+    --ease-in-out: ease-in-out;
+ }
+  
+
+  .section {
+    display: flex;
+    perspective: 2000px;
+    position: relative;
+    background-color: #fff;
+border-radius: 1vh;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+        0 10px 10px rgba(0,0,0,0.22);
+    width: 80%;
+    height: 85%;
+    overflow: hidden;
+    margin: 0;
+  }
+  
+  .left,
+  .right {
+
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition-property: transform;
+    transition-duration: var(--duration);
+    width: 50%;
+  }
+
+  
+  .left {
+    border-radius: 1vh 0 0 1vh;
+    left: 0;
+    transform-origin: 100% 50%;
+  }
+  
+  .right {
+    border-radius: 0 1vh 1vh 0;
+    right: 0;
+    transform-origin: 0% 50%;
+  }
+  
+  .next.left {
+    transform: rotateY(90deg);
+    transition-delay: 0ms;
+    transition-timing-function: var(--ease-in);
+    z-index: 9;
+  }
+  
+  .current.right {
+    transform: rotateY(0deg);
+    transition-delay: var(--duration);
+    transition-timing-function: var(--ease-out);
+  }
+  
+  .flip .current.right {
+    transform: rotateY(-90deg);
+    transition-delay: 0ms;
+    transition-timing-function: var(--ease-in);
+  }
+  
+  .flip .next.left {
+    transform: rotateY(0deg);
+    transition-delay: var(--duration);
+    transition-timing-function: var(--ease-out);
+  }
+  
