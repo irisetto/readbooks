@@ -19,18 +19,29 @@
               <span class="text-lg">read</span>
               <span class="font-bold text-lg">books</span>
             </a>
+        
           </div>
       <!-- Primary Navigation -->
       <div class="hidden md:flex items-center justify-center space-x-1">
         <a class="font-serif py-5 px-7 text-gray-700 hover:text-gray-900" href="{{ url('/') }}">Home</a>
         <a class="font-serif py-5  text-gray-700 hover:text-gray-900" href="{{ url('/books') }}">Books</a>
+        @auth
+        <a class="font-serif py-5 px-7 text-gray-700 hover:text-gray-900" href="{{ url('/dashboard') }}">Dashboard</a>
+        @endauth
        <!-- <a class="py-5 px-2 text-gray-700 hover:text-gray-900" href="#">Revenues</a>
         <a class="py-5 px-2 text-gray-700 hover:text-gray-900" href="#">Insights</a>-->
       </div>
       <!-- Secondary Navigation -->
       <div class="hidden md:flex items-center space-x-1">
+        @auth       
+            Hello, {{auth()->user()->surname}}!     
+          <a href="{{ route('logout') }}" class="m-3 py-2 px-3 bg-indig hover:text-blue-100 text-blue-200 transition duration-300 rounded shadow" >Logout</a>
+    
+        @endauth
+        @guest
         <a class="py-5 px-3 text-gray-800 hover:text-gray-900" href="{{ url('/login_register?page=login') }}">Login</a>
         <a class="py-2 px-3 bg-indig hover:text-blue-100 text-blue-200 transition duration-300 rounded shadow" href="{{ url('/login_register?page=register') }}">Register</a>
+        @endguest
       </div>
        <!-- Mobile Menu -->
       <div class="md:hidden flex items-center">
@@ -43,8 +54,16 @@
   <div class="mobile-menu hidden flex flex-col justify-center md:hidden">
     <a href="{{ url('/') }}" class="block py-2 px-4 text-sm hover:bg-gray-200 text-center">Home</a>
     <a href="{{ url('/books') }}" class="block py-2 px-4 text-sm hover:bg-gray-200 text-center">Books</a>
-    <a href="{{ url('/login_register') }}" class="block py-2 px-4 text-sm hover:bg-gray-200 text-center">Login</a>
-    <a href="{{ url('/login_register') }}" class="block py-2 px-4 text-sm hover:bg-gray-200 text-center">Register</a>
+    @auth
+    <a href="{{ url('/dashboard') }}" class="block py-2 px-4 text-sm hover:bg-gray-200 text-center">Dashboard</a>
+
+      <a href="{{ route('logout') }}" class="block py-2 px-4 text-sm hover:bg-gray-200 text-center">Logout</a>
+   
+    @endauth
+    @guest
+    <a href="{{ url('/login_register?page=login') }}" class="block py-2 px-4 text-sm hover:bg-gray-200 text-center">Login</a>
+    <a href="{{ url('/login_register?page=register') }}" class="block py-2 px-4 text-sm hover:bg-gray-200 text-center">Register</a>
+    @endguest
   </div>
 </nav>
 <script>

@@ -13,26 +13,50 @@
     <div class="my_body">
     <section class="section container" id="container">
         <div class="form-container sign-up-container right next">
-          <form name="sign-up-form">
+          <form name="register" action="{{ route('register') }}" method="POST">
             @csrf
             <h1 class="h1">Create Account</h1>
             <div class="register-info">
-            <input type="text" placeholder="First Name" class="input" name="first-name" required/>
-            <input type="text" placeholder="Last Name" class="input" name="last-name" required/>
-            <input type="text" placeholder="Username" class="input" name="username" required/>
+                      @error('name')
+        <span class="a">{{ $message }}</span>
+    @enderror
+       @error('surname')
+        <span class="a">{{ $message }}</span>
+    @enderror
+         @error('email')
+        <span class="a">{{ $message }}</span>
+    @enderror
+    @error('password')
+        <span class="a">{{ $message }}</span>
+    @enderror
+            <input type="text" placeholder="Last Name" class="input" name="name" required/>
+    
+            <input type="text" placeholder="First Name" class="input" name="surname" required/>
+         
+            <!-- <input type="text" placeholder="Username" class="input" name="username" required/> -->
             <input type="email" placeholder="Email" class="input" name="email" required/>
-            <input type="password" placeholder="Password" class="input" name="pass" required/>
-            <input type="password" placeholder="Confirm Password" class="input" name="confirm-pass" required/>
+       
+            <input type="password" placeholder="Password" class="input" name="password" required/>
+            
+            <!-- <input type="password" placeholder="Confirm Password" class="input" name="confirm-pass" required/> -->
             </div>
             <input type="submit" value="Sign up" class="submit" id="signUp">
           </form>
         </div>
         <div class="form-container sign-in-container left current">
-          <form name="sign-in-form">
+
+          <form name="sign-in-form" action="{{ route('login') }}" method="POST" >
           @csrf
             <h1 class="h1">Sign in</h1>
-            <input type="text" placeholder="Username" class="input" name="username"/>
-            <input type="password" placeholder="Password" class="input" name="pass"/>
+            @error('email_login')
+            <span class="a">{{ $message }}</span>
+              @enderror
+            <input type="text" placeholder="Email" class="input" name="email" required autofocus/>
+  
+            <input type="password" placeholder="Password" class="input" name="password" required/>
+            @error('password_login')
+            <span class="a">{{ $message }}</span>
+              @enderror
             <a class="a" href="#">Forgot your password?</a>
             <input type="submit" value="Sign in" class="submit" id="signIn">
           </form>
