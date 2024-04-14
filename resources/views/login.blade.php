@@ -57,7 +57,7 @@
             @error('password_login')
             <span class="a">{{ $message }}</span>
               @enderror
-            <a class="a" href="#">Forgot your password?</a>
+            <!-- <a class="a" href="#">Forgot your password?</a> -->
             <input type="submit" value="Sign in" class="submit" id="signIn">
           </form>
         </div>

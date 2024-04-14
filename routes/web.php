@@ -11,6 +11,8 @@ Route::get('/', function () {
     return view('home');
 });
 Route::get('/books', [BookController::class, 'index']);
+Route::post('/books/search', [BookController::class, 'search'])->name('search');
+
 Route::group(['middleware' => ['guest']], function() {
     Route::get('/login_register', [LoginController::class,'index'] );
     Route::post('/login', [LoginController::class,'login'] )->name('login');
@@ -22,7 +24,9 @@ Route::group(['middleware' => ['guest']], function() {
             Route::get('/dashboard', function () {
                 return view('dashboard');
             });
-            
+
+            Route::post('/add-to-list/{book}', [BookController::class, 'addToUserList'])->name('books.addToList');
+
             Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     });
 });

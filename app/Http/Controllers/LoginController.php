@@ -28,7 +28,7 @@ class LoginController extends Controller
         }
         return back()->withErrors([
             'email_login' => 'The provided credentials do not match our records.',
-            'password_login' => 'The password is not correct..',
+            'password_login' => 'The password is not correct...',
         ]);
     }
     public function logout()
