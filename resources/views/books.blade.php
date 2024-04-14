@@ -1,16 +1,8 @@
-@include('includes.navbar')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@extends('layouts.master')
+@section('title', 'Books')
+@vite(['resources/css/app.css','resources/js/app.js','resources/js/searchBooks.js'])
 
-    <title>Books</title>
-    @vite(['resources/css/app.css','resources/js/app.js','resources/js/searchBooks.js'])
-
-</head>
-<body >
+@section('content')
 <div class="mt-5 w-1/2 mr-auto ml-auto mb-5">
     <div class="px-2 flex items-center border-1 bg-white border shadow-md rounded-full">
     
@@ -29,38 +21,8 @@
 </div>
 
 <div class="flex flex-wrap overflow-auto w-100 justify-center" id="searchResults">
-<?php
 
-foreach ($books as $book) {
-  
-    ?>
-    <div class="m-2 mb-8 px-2  sm:w-1/5 md:w-1/6 ">
-      <div class="rounded-lg bg-white shadow-lg  flex flex-col h-full">
-        <img src="{{$book->getCover('thumbnail')}}" alt="book cover" class="rounded-t-lg " />
-        <div class="p-2 flex-grow">
-          <h2 class="mb-2 text-md font-semibold">{{ $book->title }}</h2>
-          @if ($book->authors)
-          <p class="mb-2 text-sm text-gray-700">Author: {{ $book->authors[0] }}</p>
-          @endif
-          <p class="mb-4 text-sm text-gray-700">Data publicării: {{ $book->publishedDate }}</p>
-        </div>
-        @auth  
-        <div class="p-2 mt-auto">
-        <form action="{{ route('books.addToList', ['book' => $book->id]) }}" method="POST" class="flex justify-center">
-            @csrf
-            @method('POST')
-            <button type="submit"
-            class="block rounded-lg bg-blue-500 px-4 py-2 text-center font-semibold text-white hover:bg-blue-600 mt-auto"
-            >Add to List</button>
-        </form>
-          </div>  
-        @endauth
-      </div>
-    </div>
-    <?php
+   @include('book_card', ['books' => $books])
 
-}
-?>
 </div>
-</body>
-</html>
+@endsection

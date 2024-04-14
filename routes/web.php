@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\MyBooksController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CustomAuthController;
@@ -21,9 +22,7 @@ Route::group(['middleware' => ['guest']], function() {
 });
    
     Route::group(['middleware' => ['auth']], function() {
-            Route::get('/dashboard', function () {
-                return view('dashboard');
-            });
+            Route::get('/my_books', [MyBooksController::class, 'index'])->name('myBooks');
 
             Route::post('/add-to-list/{book}', [BookController::class, 'addToUserList'])->name('books.addToList');
 

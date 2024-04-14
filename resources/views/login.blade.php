@@ -1,15 +1,7 @@
-@include('includes.navbar')
+@extends('layouts.master')
 @vite(['resources/css/login_register.css','resources/js/app.js','resources/js/login_register.js'])
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-</head>
-<body>
+@section('title', 'Login/Register')
+@section('content')
     <div class="my_body">
     <section class="section container" id="container">
         <div class="form-container sign-up-container right next">
@@ -54,9 +46,6 @@
             <input type="text" placeholder="Email" class="input" name="email" required autofocus/>
   
             <input type="password" placeholder="Password" class="input" name="password" required/>
-            @error('password_login')
-            <span class="a">{{ $message }}</span>
-              @enderror
             <!-- <a class="a" href="#">Forgot your password?</a> -->
             <input type="submit" value="Sign in" class="submit" id="signIn">
           </form>
@@ -77,5 +66,4 @@
         </div>
     </section>
 </div>
-</body>
-</html>
+@endsection

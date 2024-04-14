@@ -1,4 +1,3 @@
-// main.js
 
 document.querySelectorAll('.add-to-list').forEach(button => {
     button.addEventListener('click', function() {

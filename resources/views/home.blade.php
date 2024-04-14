@@ -1,15 +1,7 @@
-@include('includes.navbar')
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    @vite(['resources/css/app.css','resources/js/app.js','resources/pictures/home.jpg'])
-
-</head>
-<body>
+@extends('layouts.master')
+@section('title', 'Home') 
+@vite(['resources/css/app.css','resources/js/app.js','resources/pictures/home.jpg'])
+@section('content')
 <section class="text-gray-700 body-font">
   <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
     <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
@@ -27,5 +19,4 @@
     </div>
   </div>
 </section>
-</body>
-</html>
+@endsection
