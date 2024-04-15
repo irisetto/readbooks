@@ -1,24 +1,41 @@
 @extends('layouts.master')
-@vite(['resources/css/app.css','resources/js/app.js'])
+@vite(['resources/css/app.css', 'resources/js/app.js'])
 @section('title', 'My Books')
 @section('content')
-<div class="flex flex-wrap overflow-auto w-100 justify-center">
-@if (!isset($books))
-    <p class="text-center text-2xl ">No books in your library :(  </p>
-@else
-@foreach ($books as $book) 
-    <div class="m-1 mb-8 px-1  sm:w-1/5 md:w-1/6 ">
-      <div class="rounded-lg bg-white shadow-lg  flex flex-col h-full">
-        <img src="{{$book->getCover('thumbnail')}}" alt="book cover" class="rounded-t-lg " />
-        <div class="p-2 flex-grow">
-          <h2 class="mb-2 text-md font-semibold break-words">{{ $book->title }}</h2>
-          @if ($book->authors)
-          <p class="mb-2 text-sm text-gray-700">Author: {{ $book->authors[0] }}</p>
-          @endif
-          <p class="mb-4 text-sm text-gray-700">Data publicării: {{ $book->publishedDate }}</p>
-        </div>
-      </div>
-    </div>
-@endforeach
-@endif
-@endsection
+    <div class="flex flex-wrap overflow-auto w-100 justify-center">
+        @if (!isset($books))
+            <p class="text-center text-2xl ">No books in your library :( </p>
+        @else
+            @foreach ($books as $book)
+                <div class="m-1 mt-5 px-1  sm:w-1/5 md:w-1/6 ">
+                    <div class="rounded-lg bg-white shadow-lg  flex flex-col h-full">
+                        <a href = "{{ route('book.details', ['book' => $book->id]) }}">
+                            @if ($book->getCover())
+                                <img src="{{ $book->getCover() }}" alt="book cover" class="rounded-t-lg w-full" />
+                            @else
+                                <img src="{{ asset('pictures/no_cover.jpg') }}" alt="book cover"
+                                    class="rounded-t-lg w-full" />
+                            @endif
+                        </a>
+                        <div class="p-2 flex-grow">
+                            <h2 class="mb-2 text-md font-semibold break-words">{{ $book->title }}</h2>
+                            @if ($book->authors)
+                                <p class="mb-2 text-sm text-gray-700">Author: {{ $book->authors[0] }}</p>
+                            @endif
+                            <p class="mb-4 text-sm text-gray-700">Data publicării: {{ $book->publishedDate }}</p>
+                        </div>
+                        <div class="p-2 mt-auto">
+                            <form action="{{ route('books.deleteBook', ['book' => $book->id]) }}" method="POST"
+                                class="flex justify-center">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    onclick="return confirm('Are you sure you want to delete this book?')"
+                                    class="block rounded-lg bg-red-500 px-4 py-2 text-center font-semibold text-white hover:px-7 mt-auto">x</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        @endif
+    @endsection

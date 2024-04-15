@@ -13,6 +13,7 @@ Route::get('/', function () {
 });
 Route::get('/books', [BookController::class, 'index']);
 Route::post('/books/search', [BookController::class, 'search'])->name('search');
+Route::get('/books/{book}', [BookController::class, 'showBook'])->name('book.details');
 
 Route::group(['middleware' => ['guest']], function() {
     Route::get('/login_register', [LoginController::class,'index'] );
@@ -23,6 +24,7 @@ Route::group(['middleware' => ['guest']], function() {
    
     Route::group(['middleware' => ['auth']], function() {
             Route::get('/my_books', [MyBooksController::class, 'index'])->name('myBooks');
+            Route::delete('/delete-book/{book}', [MyBooksController::class, 'delete'])->name('books.deleteBook');
 
             Route::post('/add-to-list/{book}', [BookController::class, 'addToUserList'])->name('books.addToList');
 

@@ -22,4 +22,14 @@ class MyBooksController extends Controller
         }
         return view('my_books', ['books' => $userBooks]);
     }
+    public function delete($bookId)
+    {
+        $user = auth()->user();
+        $book = $user->books->where('google_id', $bookId)->first();
+        if ($book) {
+            $book->delete();
+            return redirect('/my_books')->with('success', 'Cartea a fost ștearsă cu succes din lista ta.');
+        }
+        return redirect('/my_books')->with('error', 'Cartea nu a fost găsită în lista ta.');
+    }
 }

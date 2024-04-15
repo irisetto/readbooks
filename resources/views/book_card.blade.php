@@ -1,8 +1,14 @@
 @foreach ($books as $book) 
-    <div class="m-1 mb-8 px-1  sm:w-1/5 md:w-1/6 ">
+    <div class="m-1 mb-8 px-1  sm:w-1/6 md:w-1/7 ">
       <div class="rounded-lg bg-white shadow-lg  flex flex-col h-full">
-        <img src="{{$book->getCover('thumbnail')}}" alt="book cover" class="rounded-t-lg " />
-        <div class="p-2 flex-grow">
+        <a href = "{{ route('book.details', ['book' => $book->id]) }}" class="">
+          @if($book->getCover())
+      <img src="{{$book->getCover()}}" alt="book cover" class="rounded-t-lg w-full" />
+      @else
+      <img src="{{ asset('pictures/no_cover.jpg') }}" alt="book cover" class="rounded-t-lg w-full" />
+      @endif
+      </a>
+      <div class="p-2 flex-grow">
           <h2 class="mb-2 text-md font-semibold break-words">{{ $book->title }}</h2>
           @if ($book->authors)
           <p class="mb-2 text-sm text-gray-700">Author: {{ $book->authors[0] }}</p>

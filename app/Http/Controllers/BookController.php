@@ -11,8 +11,8 @@ class BookController extends Controller
 {
     public function index()
     {
-        $googleBooks = new GoogleBooks(['maxResults' => 10]);
-        $books = $googleBooks->volumes->search('Lucy Score');
+        $googleBooks = new GoogleBooks(['maxResults' => 15]);
+        $books = $googleBooks->volumes->search('A');
 
         return view('books', ['books' => $books]);
     }
@@ -55,5 +55,17 @@ public function getUserBooks()
         }
     }
     return view('/my_books', ['books' => $books]);
+}
+public function showBook($bookId)
+{
+    $googleBooks = new GoogleBooks();
+    $book = $googleBooks->volumes->get($bookId);
+    $book->added = false;
+    $existingBook = Book::where('google_id', $bookId)
+    ->where('user_id', auth()->user()->id)
+    ->first();
+    if ($existingBook) {
+        $book->added = true;}
+    return view('book_details', ['book' => $book]);
 }
 }
