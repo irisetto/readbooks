@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @vite(['resources/css/app.css','resources/js/app.js'])
-@section('title', 'Books')
+@section('title', 'My Books')
 @section('content')
 <div class="flex flex-wrap overflow-auto w-100 justify-center">
 @if (!isset($books))

@@ -13,8 +13,14 @@ document.querySelectorAll('.add-to-list').forEach(button => {
         })
         .then(response => response.json())
         .then(data => {
-            alert(data.message);
-        })
+            // if (data.error) {
+            //     // Afisăm notificarea de eroare în pagina books.blade.php
+            //     const errorNotification = document.createElement('div');
+            //     errorNotification.classList.add('alert', 'alert-danger');
+            //     errorNotification.textContent = data.error;
+            //     document.getElementById('notification').appendChild(errorNotification);
+            // } 
+                })
         .catch(error => {
             console.error('A apărut o eroare:', error);
         });

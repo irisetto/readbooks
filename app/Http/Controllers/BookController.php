@@ -12,7 +12,7 @@ class BookController extends Controller
     public function index()
     {
         $googleBooks = new GoogleBooks(['maxResults' => 10]);
-        $books = $googleBooks->volumes->search('Agatha Christie');
+        $books = $googleBooks->volumes->search('Lucy Score');
 
         return view('books', ['books' => $books]);
     }
@@ -26,16 +26,12 @@ class BookController extends Controller
 }
 public function addToUserList(Request $request, $bookId)
 {
-    // $googleBooks = new GoogleBooks();
-    // $googleBook = $googleBooks->volumes->get($bookId);
-    // if (!$googleBook) {
-    //     return redirect()->back()->with('error', 'Cartea nu a putut fi găsită în Google Books.');
-    // }
+    
     $existingBook = Book::where('google_id', $bookId)
     ->where('user_id', auth()->user()->id)
     ->first();
     if ($existingBook) {
-        return response()->json(['error' => 'Cartea este deja în lista ta.'], 400);
+        return redirect()->back()->with('error', 'Cartea exista deja în lista ta.')->withInput();;
     }
     $book = new Book();
     $book->google_id = $bookId;
@@ -45,7 +41,7 @@ public function addToUserList(Request $request, $bookId)
 
     //return response()->json(['message' => 'Cartea a fost adăugată în lista ta.']);
 
-    return redirect('/dashboard')->with('success', 'Cartea a fost adăugată cu succes în lista ta.');
+    return redirect('/my_books')->with('success', 'Cartea a fost adăugată cu succes în lista ta.');
 }
 public function getUserBooks()
 {
@@ -58,6 +54,6 @@ public function getUserBooks()
             $books[] = $googleBook;
         }
     }
-    return view('dashboard', ['books' => $books]);
+    return view('/my_books', ['books' => $books]);
 }
 }

@@ -26,7 +26,7 @@
         <a class="font-serif py-5 px-7 text-gray-700 hover:text-gray-900" href="{{ url('/') }}">Home</a>
         <a class="font-serif py-5  text-gray-700 hover:text-gray-900" href="{{ url('/books') }}">Books</a>
         @auth
-        <a class="font-serif py-5 px-7 text-gray-700 hover:text-gray-900" href="{{ url('/dashboard') }}">My books</a>
+        <a class="font-serif py-5 px-7 text-gray-700 hover:text-gray-900" href="{{ url('/my_books') }}">My books</a>
         @endauth
        <!-- <a class="py-5 px-2 text-gray-700 hover:text-gray-900" href="#">Revenues</a>
         <a class="py-5 px-2 text-gray-700 hover:text-gray-900" href="#">Insights</a>-->
@@ -55,7 +55,7 @@
     <a href="{{ url('/') }}" class="block py-2 px-4 text-sm hover:bg-gray-200 text-center">Home</a>
     <a href="{{ url('/books') }}" class="block py-2 px-4 text-sm hover:bg-gray-200 text-center">Books</a>
     @auth
-    <a href="{{ url('/dashboard') }}" class="block py-2 px-4 text-sm hover:bg-gray-200 text-center">My books</a>
+    <a href="{{ url('/my_books') }}" class="block py-2 px-4 text-sm hover:bg-gray-200 text-center">My books</a>
 
       <a href="{{ route('logout') }}" class="block py-2 px-4 text-sm hover:bg-gray-200 text-center">Logout</a>
    
