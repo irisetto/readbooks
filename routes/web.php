@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\MyBooksController;
+use App\Http\Controllers\ListController;
+
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CustomAuthController;
@@ -25,9 +27,9 @@ Route::group(['middleware' => ['guest']], function() {
     Route::group(['middleware' => ['auth']], function() {
             Route::get('/my_books', [MyBooksController::class, 'index'])->name('myBooks');
             Route::delete('/delete-book/{book}', [MyBooksController::class, 'delete'])->name('books.deleteBook');
-
+            Route::get('/user/lists', [ListController::class, 'getLists'])->name('user.lists');
             Route::post('/add-to-list/{book}', [BookController::class, 'addToUserList'])->name('books.addToList');
-
+            Route::get('/lists/{list}/books', [ListController::class, 'getBooksByList'])->name('lists.showBooks');
             Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     });
 });

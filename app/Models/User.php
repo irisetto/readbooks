@@ -51,4 +51,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Book::class);
     }
+    public function user_lists(): HasMany
+    {
+        return $this->hasMany(UserList::class);
+    }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title', 'Books')
-@vite(['resources/css/app.css','resources/js/app.js','resources/js/searchBooks.js'])
+@vite(['resources/css/app.css','resources/js/app.js','resources/js/searchBooks.js','resources/js/addToList.js'])
 
 @section('content')
 <div class="mt-5 w-1/2 mr-auto ml-auto mb-5">
@@ -19,12 +19,8 @@
     
     </div>
 </div>
-@if (session('error'))
-<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-    <strong class="font-bold">Error!</strong>
-    <span class="block sm:inline">{{ session('error') }}</span>
+<div id="notification" class="flex justify-center">
 </div>
-@endif
 <div class="flex flex-wrap overflow-auto w-100 justify-center" id="searchResults">
 
    @include('book_card', ['books' => $books])

@@ -1,28 +1,39 @@
 
-document.querySelectorAll('.add-to-list').forEach(button => {
-    button.addEventListener('click', function() {
-        const bookId = this.dataset.bookId;
+document.addEventListener('DOMContentLoaded', function() {
 
+var dropdownItems = document.querySelectorAll('.add-to-list');
+
+dropdownItems.forEach(function(item) {
+    item.addEventListener('click', function(event) {
+        event.preventDefault();
+        const bookId = this.dataset.bookId;
+        const listId = this.dataset.listId;
         fetch(`/add-to-list/${bookId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
+            body: JSON.stringify({
+                listId: listId
 
         })
+    })
         .then(response => response.json())
         .then(data => {
-            // if (data.error) {
-            //     // Afisăm notificarea de eroare în pagina books.blade.php
-            //     const errorNotification = document.createElement('div');
-            //     errorNotification.classList.add('alert', 'alert-danger');
-            //     errorNotification.textContent = data.error;
-            //     document.getElementById('notification').appendChild(errorNotification);
-            // } 
+                var notifDiv = document.getElementById('notification');
+                if (data.error) {
+                    notifDiv.innerText = data.error;
+                    notifDiv.style.color = 'red';
+                } else {
+                    notifDiv.innerText = data.success;
+                    notifDiv.style.color = 'green';
+                }
+                notifDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 })
         .catch(error => {
             console.error('A apărut o eroare:', error);
         });
     });
+});
 });

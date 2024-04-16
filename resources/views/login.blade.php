@@ -43,7 +43,7 @@
             @error('email_login')
             <span class="a">{{ $message }}</span>
               @enderror
-            <input type="text" placeholder="Email" class="input" name="email" required autofocus/>
+            <input type="email" placeholder="Email" class="input" name="email" required autofocus/>
   
             <input type="password" placeholder="Password" class="input" name="password" required/>
             <!-- <a class="a" href="#">Forgot your password?</a> -->
