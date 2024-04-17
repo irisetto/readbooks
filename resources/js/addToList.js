@@ -8,6 +8,7 @@ dropdownItems.forEach(function(item) {
         event.preventDefault();
         const bookId = this.dataset.bookId;
         const listId = this.dataset.listId;
+        console.log(bookId, listId);
         fetch(`/add-to-list/${bookId}`, {
             method: 'POST',
             headers: {

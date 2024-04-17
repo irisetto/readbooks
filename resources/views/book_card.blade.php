@@ -16,13 +16,7 @@
           <p class="mb-4 text-sm text-gray-700">Published: {{ $book->publishedDate }}</p>
         </div>
         @auth  
-        {{-- <form action="{{ route('books.addToList', ['book' => $book->id]) }}" method="POST" class="flex justify-center">
-            @csrf
-            @method('POST')
-            <button type="submit"
-            class="block rounded-lg bg-blue-500 px-4 py-2 text-center font-semibold text-white hover:bg-blue-600 mt-auto"
-            >Add to List</button>
-        </form> --}}
+
       <div class="flex justify-center p-2">           
           <div  class="dropdown inline-block relative">
          

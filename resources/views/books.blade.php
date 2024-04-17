@@ -23,7 +23,7 @@
 </div>
 <div class="flex flex-wrap overflow-auto w-100 justify-center" id="searchResults">
 
-   @include('book_card', ['books' => $books])
+   @include('book_card', ['books' => $books, 'userLists' => $userLists])
 
 </div>
 @endsection

@@ -15,14 +15,21 @@ class BookController extends Controller
         $books = $googleBooks->volumes->search('A');
         if(auth()->check()){
             $userLists = auth()->user()->user_lists()->get();
+            return view('books', ['books' => $books, 'userLists' => $userLists]);
+
         }
-        return view('books', ['books' => $books, 'userLists' => $userLists]);
+        return view('books', ['books' => $books]);
     }
     public function search(Request $request)
     {
         $query = $request->get('query');
         $googleBooks = new GoogleBooks(['maxResults' => 10]);
         $result= $googleBooks->volumes->search($query);
+        if(auth()->check()){
+            $userLists = auth()->user()->user_lists()->get();
+            return view('book_card', ['books' => $result, 'userLists' => $userLists]);
+
+        }
         return view('book_card', ['books' => $result]);
         
 }
@@ -41,8 +48,6 @@ public function addToUserList(Request $request, $bookId)
     $book->user_list_id = $listId;
 
     $book->save();
-
-    // //return response()->json(['message' => 'Cartea a fost adăugată în lista ta.']);
 
      return response()->json(['success' => 'The book was added successfully.']);
 }
@@ -70,8 +75,8 @@ public function showBook($bookId)
     $existingBook = Book::where('google_id', $bookId)
     ->where('user_id', auth()->user()->id)
     ->first();
-    if ($existingBook) {
-        $book->added = true;}
-    return view('book_details', ['book' => $book]);
+    $userLists = auth()->user()->user_lists()->get();
+
+    return view('book_details', ['book' => $book,'userLists' => $userLists]);
 }
 }

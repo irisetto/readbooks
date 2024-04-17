@@ -7,7 +7,7 @@
   rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Montserrat"
 />
-<nav class="transform scale-98 filter drop-shadow-l bg-grey-100 mx-auto">
+<nav class="transform scale-98 filter drop-shadow-l bg-white mx-auto">
   <div class="px-8 border mx-auto rounded-md  drop-shadow-md ">
     <div class="flex justify-between">
       <!-- logo -->

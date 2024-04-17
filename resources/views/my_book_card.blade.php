@@ -1,5 +1,5 @@
 @if (!isset($books) || $books==null)
-<p class="text-center text-2xl ">No books in your library :( </p>
+<p class="text-center text-2xl my-auto">No books in your library :( </p>
 @else
 @foreach ($books as $book)
     <div class="flex m-1 mt-5 px-1  sm:w-1/4 md:w-1/5 lg:w-1/6 ">

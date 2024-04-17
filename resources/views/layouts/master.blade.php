@@ -7,7 +7,7 @@
 
     <title>@yield('title')</title>
 </head>
-<body>
+<body class="bg-gray-100" id="content">
     <header>
         @include('includes.navbar')
     </header>
@@ -16,7 +16,7 @@
         @yield('content')
     </main>
 
-    <footer>
+    <footer >
     </footer>
 </body>
 </html>
